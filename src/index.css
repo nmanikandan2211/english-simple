@@ -5,7 +5,7 @@ body {
 
 .main {
   width: 100vw;
-  height: 100vh;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +39,7 @@ button {
   background-color: #F9F9F9;
 }
 
-.p-mic {
+/* .p-mic {
   position: absolute;
   top: 0;
   left: 0;
@@ -48,4 +48,4 @@ button {
   border-radius: 5px;
   color: aliceblue;
   background-color: rgb(68, 69, 68);
-}
+} */
