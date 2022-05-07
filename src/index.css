@@ -1,0 +1,51 @@
+body {
+  background-color: #F9F9F9;
+
+}
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+button {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  margin: 0px 4px;
+  padding: 15px;
+  color: rgb(68, 69, 68);
+  background-color: aliceblue;
+  border: 2px solid rgb(247, 55, 55);
+  border-radius: 5px;
+}
+
+.p-trans {
+  font-size: 30px;
+  border-radius: 5px;
+  color: rgb(58, 58, 58);
+  background-color: #F9F9F9;
+}
+
+.p-mic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  color: aliceblue;
+  background-color: rgb(68, 69, 68);
+}
