@@ -1,8 +1,8 @@
 import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import "./index.css";
-import './App.css';
-import Slider from './Components/Slider/Slider'
+import Slider from './Components/Slider/Slider';
+
 
 const App = () => {
   const {
@@ -17,18 +17,18 @@ const App = () => {
   }
 
   return (
-    <div className='main'>
+    <div>
       <div>
+        <Slider />
       </div>
-      <p className='p-mic'>Microphone: {listening ? 'on' : 'off'}</p>
-      <div>
-        <img src={process.env.PUBLIC_URL + `/images/1.jpg`} />
-      </div>
-      <p className='p-trans'>{transcript}</p>
-      <div className='buttons'>
-        <button onClick={SpeechRecognition.startListening}>Start</button>
-        <button onClick={SpeechRecognition.stopListening}>Stop</button>
-        <button onClick={resetTranscript}>Reset</button>
+      <div className='main'>
+        <p className='p-mic'>Microphone: {listening ? 'on' : 'off'}</p>
+        <p className='p-trans'>{transcript}</p>
+        <div className='buttons'>
+          <button onClick={SpeechRecognition.startListening}>Start</button>
+          <button onClick={SpeechRecognition.stopListening}>Stop</button>
+          <button onClick={resetTranscript}>Reset</button>
+        </div>
       </div>
     </div>
   );
