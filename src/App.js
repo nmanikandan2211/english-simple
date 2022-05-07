@@ -5,6 +5,7 @@ import Slider from './Components/Slider/Slider';
 
 
 const App = () => {
+
   const {
     transcript,
     listening,
