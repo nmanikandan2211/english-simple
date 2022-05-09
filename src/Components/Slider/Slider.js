@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import { Container, Row } from 'react-bootstrap';
 import './Slider.css'
 import BtnSlider from './BtnSlider'
 import { getSingleFiles } from '../../../src/data/api';
 
 
-export default function Slider() {
+export default function Slider(transcript) {
 
-  const [slideIndex, setSlideIndex] = useState(1)
+  const [slideIndex, setSlideIndex] = useState(1);
   const [singleFiles, setSingleFiles] = useState([]);
 
-  console.log("singleFiles", singleFiles)
+  const speechText = transcript.transcript
+  const listening = transcript.listening
+
+  // const answerOne = singleFiles.map((file, index) => file.answerOne);
+  // // const answerTwo = singleFiles.map((file, index) => file.answerTwo);
+
+
+  const answerOne = 'my name is Manikandan what is your name';
+  // const answerTwo = 'my name is Manikandan whats your name';
+
+  console.log("speechText", speechText)
+  console.log("listening", listening)
+
 
   const getSingleFileslist = async () => {
     try {
@@ -23,14 +36,23 @@ export default function Slider() {
     getSingleFileslist();
   }, []);
 
-  console.log("singleFiles", singleFiles)
+  useEffect(() => {
+    if (speechText === answerOne) {
+      console.log("success");
+    } else {
+      console.log("fail")
+    }
+  }, [listening, speechText]);
+
 
   const nextSlide = () => {
     if (slideIndex !== singleFiles.length) {
       setSlideIndex(slideIndex + 1)
+
     }
     else if (slideIndex === singleFiles.length) {
       setSlideIndex(1)
+
     }
   }
 
@@ -40,12 +62,13 @@ export default function Slider() {
     }
     else if (slideIndex === 1) {
       setSlideIndex(singleFiles.length)
+
     }
   }
 
   return (
-    <div className="container-slider">
-      <div className='tamil-image'>
+    <Container>
+      <Row className="slider">
         {singleFiles.map((file, index) => {
           return (
             <div
@@ -53,14 +76,13 @@ export default function Slider() {
               className={slideIndex === index + 1 ? "slide active-anim" : "slide"}
             >
               <img src={`http://localhost:8080/${file.filePath}`} alt="img" />
-              <h2 >{file.text}</h2>
-
             </div>
           )
         })}
-      </div>
-      <BtnSlider moveSlide={nextSlide} direction={"next"} />
-      <BtnSlider moveSlide={prevSlide} direction={"prev"} />
-    </div>
+        <BtnSlider moveSlide={nextSlide} direction={"next"} />
+        <BtnSlider moveSlide={prevSlide} direction={"prev"} />
+      </Row>
+    </Container>
+
   )
 }
