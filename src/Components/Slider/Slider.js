@@ -1,28 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+import { BsEmojiFrown } from "react-icons/bs";
+import { BsEmojiSmile } from "react-icons/bs";
 import './Slider.css'
 import BtnSlider from './BtnSlider'
 import { getSingleFiles } from '../../../src/data/api';
 
 
-export default function Slider(transcript) {
+const Slider = (transcript) => {
 
   const [slideIndex, setSlideIndex] = useState(1);
   const [singleFiles, setSingleFiles] = useState([]);
+  const [transcriptTrue, setTranncriptTrue] = useState();
 
   const speechText = transcript.transcript
-  const listening = transcript.listening
 
-  // const answerOne = singleFiles.map((file, index) => file.answerOne);
-  // // const answerTwo = singleFiles.map((file, index) => file.answerTwo);
+  const answer = singleFiles.map((file, index) => file.answerOne);
+  const answerOne = answer.includes(speechText)
 
-
-  const answerOne = 'my name is Manikandan what is your name';
-  // const answerTwo = 'my name is Manikandan whats your name';
-
-  console.log("speechText", speechText)
-  console.log("listening", listening)
-
+  console.log("answerOne", answerOne)
 
   const getSingleFileslist = async () => {
     try {
@@ -37,12 +33,16 @@ export default function Slider(transcript) {
   }, []);
 
   useEffect(() => {
-    if (speechText === answerOne) {
-      console.log("success");
-    } else {
-      console.log("fail")
+    if (answerOne) {
+      setTranncriptTrue(true);
     }
-  }, [listening, speechText]);
+  }, [answerOne]);
+
+  useEffect(() => {
+    if (answerOne) {
+      setTranncriptTrue(false);
+    }
+  }, [answerOne]);
 
 
   const nextSlide = () => {
@@ -68,6 +68,16 @@ export default function Slider(transcript) {
 
   return (
     <Container>
+      <Row className='emoji'>
+        {transcriptTrue ? <Col sm={1}>
+          <BsEmojiSmile className='right-emoji' />
+        </Col> : null}
+      </Row>
+      <Row className='emoji'>
+        {!transcriptTrue ? <Col sm={1}>
+          <BsEmojiFrown className='worng-emoji' />
+        </Col> : null}
+      </Row>
       <Row className="slider">
         {singleFiles.map((file, index) => {
           return (
@@ -86,3 +96,5 @@ export default function Slider(transcript) {
 
   )
 }
+
+export default Slider;
