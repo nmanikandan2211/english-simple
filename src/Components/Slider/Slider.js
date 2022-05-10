@@ -6,19 +6,32 @@ import './Slider.css'
 import BtnSlider from './BtnSlider'
 import { getSingleFiles } from '../../../src/data/api';
 
-
 const Slider = (transcript) => {
 
   const [slideIndex, setSlideIndex] = useState(1);
   const [singleFiles, setSingleFiles] = useState([]);
-  const [transcriptTrue, setTranncriptTrue] = useState();
+  const [transcriptTrue, setTranscriptTrue] = useState();
+  const [transcriptWrong, setTranscriptWrong] = useState(false);
+  const [click, setClick] = useState();
 
   const speechText = transcript.transcript
+  const answerFirst = singleFiles.map((file, index) => file.answerOne);
+  const answerSecond = singleFiles.map((file, index) => file.answerTwo);
 
-  const answer = singleFiles.map((file, index) => file.answerOne);
-  const answerOne = answer.includes(speechText)
+  let answerOne;
+  if (click) {
+    answerOne = answerFirst.includes(speechText)
+  }
 
-  console.log("answerOne", answerOne)
+  let answerTwo;
+  if (click) {
+    answerTwo = answerSecond.includes(speechText)
+  }
+
+
+  useEffect(() => {
+    getSingleFileslist();
+  }, []);
 
   const getSingleFileslist = async () => {
     try {
@@ -28,31 +41,28 @@ const Slider = (transcript) => {
       console.log(error);
     }
   }
+
   useEffect(() => {
     getSingleFileslist();
   }, []);
 
-  useEffect(() => {
-    if (answerOne) {
-      setTranncriptTrue(true);
-    }
-  }, [answerOne]);
 
   useEffect(() => {
-    if (answerOne) {
-      setTranncriptTrue(false);
+    if (answerOne || answerTwo) {
+      setTranscriptTrue(true);
+    } else if (answerOne === false || answerTwo === false) {
+      setTranscriptWrong(true)
     }
-  }, [answerOne]);
+  }, [click]);
 
 
   const nextSlide = () => {
-    if (slideIndex !== singleFiles.length) {
+    if (slideIndex !== singleFiles.length && transcriptTrue) {
       setSlideIndex(slideIndex + 1)
 
     }
     else if (slideIndex === singleFiles.length) {
       setSlideIndex(1)
-
     }
   }
 
@@ -66,15 +76,20 @@ const Slider = (transcript) => {
     }
   }
 
+  const clickMe = () => {
+    setClick(true)
+    console.log("clicked")
+  }
+
   return (
     <Container>
       <Row className='emoji'>
-        {transcriptTrue ? <Col sm={1}>
+        {transcriptTrue && click ? <Col sm={1}>
           <BsEmojiSmile className='right-emoji' />
         </Col> : null}
       </Row>
       <Row className='emoji'>
-        {!transcriptTrue ? <Col sm={1}>
+        {transcriptWrong && click ? <Col sm={1}>
           <BsEmojiFrown className='worng-emoji' />
         </Col> : null}
       </Row>
@@ -91,6 +106,9 @@ const Slider = (transcript) => {
         })}
         <BtnSlider moveSlide={nextSlide} direction={"next"} />
         <BtnSlider moveSlide={prevSlide} direction={"prev"} />
+      </Row>
+      <Row>
+        <button onClick={clickMe}>click</button>
       </Row>
     </Container>
 
