@@ -23,14 +23,14 @@ const App = () => {
     <Container fluid>
       <Row>
         <Row>
-          <Slider />
+          <Slider transcript={transcript} />
         </Row>
         <Row className='p-trans'>
           <p >{transcript}</p>
         </Row>
         <Row className='buttons'>
           <Col sm={2} className="icons">
-            <div className={startListening ? 'mic-animation mic-animation' : 'mic-animation'}>
+            <div className='mic-animation'>
               <BsFillMicFill size="2em" color='#14424d' onClick={startListening} />
             </div>
           </Col>
