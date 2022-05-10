@@ -1,5 +1,5 @@
 body {
-  background-color: #ffffff;
+  background-color: #14424d;
 }
 
 .main {
@@ -16,24 +16,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 30px;
 
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
 }
 
 .p-trans {
   font-size: 30px;
   border-radius: 5px;
-  color: rgb(58, 58, 58);
-  background-color: #ffffff;
+  color: rgb(255, 255, 255);
+  background-color: #14424d;
   height: 100px;
-  width: 60%;
+  width: 67%;
+  margin: auto;
+  text-align: center;
 }
 
-.on-mic {
-  height: 75px;
-  width: 100px;
-  padding-right: 15px;
-}
+.transcript-text {
 
+  font-size: 40px;
+  font-weight: 600;
+}
 
 .reset-btn {
   height: 50px;
@@ -47,10 +54,14 @@ body {
   justify-content: center;
 }
 
+.mic {
+  size: 4em;
+}
+
 .mic-animation {
-  background-color: blue;
-  height: 100px;
-  width: 100px;
+  background-color: rgb(59, 203, 2);
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -58,42 +69,44 @@ body {
   position: relative;
 }
 
-.mic-animation:before {
+.mic-animation:active::before {
   content: "";
   position: absolute;
   width: calc(100%+40px);
   height: calc(100%+40px);
-  border: 2px solid blue;
+  border: 2px solid rgb(59, 203, 2);
   border-radius: 50%;
   animation: pulseeffects 1.5s linear infinite;
-
+  z-index: -2;
 }
 
-.mic-animation:after {
+.mic-animation:active::after {
   content: "";
   position: absolute;
   width: calc(100%+40px);
   height: calc(100%+40px);
-  border: 2px solid blue;
+  border: 2px solid rgb(59, 203, 2);
   border-radius: 50%;
   animation: pulseeffects 1.5s linear infinite;
   animation-delay: 0.4s;
+  z-index: -2;
+
 
 }
 
 @keyframes pulseeffects {
   0% {
-    transform: scale(0.5);
+    transform: scale(10);
     opacity: 0;
   }
 
   50% {
-    transform: scale(1);
+    transform: scale(20);
     opacity: 1;
   }
 
   100% {
-    transform: scale(1.4);
+    transform: scale(30);
     opacity: 0;
   }
 }
