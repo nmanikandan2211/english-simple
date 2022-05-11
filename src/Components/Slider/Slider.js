@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { BsEmojiFrown } from "react-icons/bs";
 import { BsEmojiSmile } from "react-icons/bs";
 import './Slider.css'
-import BtnSlider from './BtnSlider'
+import BtnSlider from '../BtnSlider/BtnSlider'
 import { getSingleFiles } from '../../../src/data/api';
 
 const Slider = (transcript) => {
