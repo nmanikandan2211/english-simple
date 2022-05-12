@@ -38,3 +38,34 @@
   display: flex;
   justify-content: center;
 }
+
+.btn-slide {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(34, 34, 34, 0.287);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn-slide img {
+  width: 25px;
+  height: 25px;
+  pointer-events: none;
+}
+
+.prev {
+  top: 80%;
+  left: 20px;
+  transform: translateY(-60%);
+}
+
+.next {
+  top: 80%;
+  right: 20px;
+  transform: translateY(-60%);
+}
