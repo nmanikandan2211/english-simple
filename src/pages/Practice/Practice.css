@@ -69,7 +69,7 @@ body {
   position: relative;
 }
 
-.mic-animation:active::before {
+.mic-animation::before {
   content: "";
   position: absolute;
   width: calc(100%+40px);
@@ -80,7 +80,7 @@ body {
   z-index: -2;
 }
 
-.mic-animation:active::after {
+.mic-animation::after {
   content: "";
   position: absolute;
   width: calc(100%+40px);
